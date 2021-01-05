@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="DMapp.View.SessionSettingsPage">
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Command="{Binding ContinueButtonClickedCommand}"/>
+                <SwipeGestureRecognizer Direction="Right" Command="{Binding BackCommand }" />
+            </Grid.GestureRecognizers>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.6*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="0.8*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source= "DashboardStyles.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <gradient:SfGradientView Grid.RowSpan="3" Grid.ColumnSpan="4">
+                <gradient:SfGradientView.BackgroundBrush>
+                    <gradient:SfLinearGradientBrush >
+                        <gradient:SfLinearGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                            <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        </gradient:SfLinearGradientBrush.GradientStops>
+                    </gradient:SfLinearGradientBrush>
+                </gradient:SfGradientView.BackgroundBrush>
+            </gradient:SfGradientView>
+            
+            <!--<Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>-->
+
+            <chart:SfChart Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+
+                <chart:SfChart.PrimaryAxis >
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.AxisLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White" />
+                        </chart:CategoryAxis.AxisLineStyle>
+
+
+
+                        <!--To change axis label text color-->
+                        <chart:CategoryAxis.LabelStyle>
+                            <chart:ChartAxisLabelStyle TextColor="White" FontSize="13" Margin="0,7,0,0"/>
+                        </chart:CategoryAxis.LabelStyle>
+                        <!--To change axis ticks color-->
+                        <chart:CategoryAxis.MajorTickStyle>
+                            <chart:ChartAxisTickStyle StrokeColor="White"/>
+                        </chart:CategoryAxis.MajorTickStyle>
+
+                        <chart:CategoryAxis.MajorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:CategoryAxis.MajorGridLineStyle>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.MajorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:NumericalAxis.MajorGridLineStyle>
+
+                        <chart:NumericalAxis.MinorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:NumericalAxis.MinorGridLineStyle>
+
+                        <chart:NumericalAxis.LabelStyle>
+                            <chart:ChartAxisLabelStyle TextColor="White" FontSize="10" />
+                        </chart:NumericalAxis.LabelStyle>
+                        
+                    </chart:NumericalAxis>
+                    
+                    
+                </chart:SfChart.SecondaryAxis>
+
+                <chart:ColumnSeries ItemsSource="{Binding ChartData}" XBindingPath="ColumnName" YBindingPath="Value">
+
+                    <chart:ColumnSeries.ColorModel>
+                        <chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource Colors}"/>
+                    </chart:ColumnSeries.ColorModel>
+
+                 
+                </chart:ColumnSeries>
+                 
+            </chart:SfChart>
+
+            <!--<Label Grid.Row="2" Grid.Column="1" Text="{Binding AccuracyToDisplay}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>-->
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding TimeToDisplay}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="30" TextColor="White"/>
+
+          
+            
+
+            <!--<Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Style="{StaticResource ContinueButtonStyle}" Text="Continue" Command="{Binding ContinueButtonClickedCommand}"/>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMapp.View.OptionsSetupPage"
+             xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             x:Name="OSetupPage">
+    <ContentPage.Content>
+        
+            
+
+            <Grid>
+
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Command="{Binding ContinueButtonClickedCommand}"/>
+                <SwipeGestureRecognizer Direction="Right" Command="{Binding BackCommand}"/>
+            </Grid.GestureRecognizers>
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.8*"/>
+            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source= "DashboardStyles.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <gradient:SfGradientView Grid.RowSpan="5" Grid.ColumnSpan="4">
+                <gradient:SfGradientView.BackgroundBrush>
+                    <gradient:SfLinearGradientBrush >
+                        <gradient:SfLinearGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                            <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        </gradient:SfLinearGradientBrush.GradientStops>
+                    </gradient:SfLinearGradientBrush>
+                </gradient:SfGradientView.BackgroundBrush>
+            </gradient:SfGradientView>
+
+            <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Placeholder="Option's name like: Audi" Text="{Binding OptionName}" HorizontalOptions="EndAndExpand"  WidthRequest="400"  HorizontalTextAlignment="Center" TextColor="White" />
+            <Button Grid.Row="2" Command="{Binding PlusButtonClickedCommand}" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="End" Text="+" CornerRadius="0" TextColor="{Binding ButtonColor}" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent" TranslationY="-13" FontSize="20"  Style="{StaticResource PlusButtonStyle}"  />
+                <!--<Button Grid.Row="1" Command="{Binding ContinueButtonClickedCommand}" Grid.Column="3"  Text="Continue" VerticalOptions="Center" HorizontalOptions="End"  CornerRadius="30" BackgroundColor="LightBlue" TextColor="White" TranslationX="0"/>-->
+            <Label Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding NumOfChoices}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+            <ListView SeparatorColor="Purple" x:Name="listview" SelectedItem="{Binding SelectedItemTemp, Mode=TwoWay}" Margin="0,20,0,0" Grid.Row="3" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" ItemsSource="{Binding OptionsList}" Grid.Column="1" Grid.ColumnSpan="2" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Padding="7,8,0,8" Text="{Binding}" FontSize="16" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                            <ViewCell.ContextActions >
+                                <MenuItem Text="Delete"
+                                          Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=OSetupPage}}"
+                                          CommandParameter="{Binding}"
+                                          IsDestructive="True"/>
+
+                            </ViewCell.ContextActions>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

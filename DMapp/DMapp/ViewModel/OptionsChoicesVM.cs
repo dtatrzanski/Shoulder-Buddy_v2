@@ -400,27 +400,27 @@ namespace DMapp.ViewModel
             switch (numOfSlider)
             {
                 case 1:
-                    ScoreLeft1 = sliderScore1;
+                    ScoreLeft1 = Math.Round(sliderScore1,3);
                     SafeSliderValue(1, ScoreLeft1);
                     break;
                 case 2:
-                    ScoreLeft2 = sliderScore2;
+                    ScoreLeft2 = Math.Round(sliderScore2, 3);
                     SafeSliderValue(2, ScoreLeft2);
                     break;
                 case 3:
-                    ScoreLeft3 = sliderScore3;
+                    ScoreLeft3 = Math.Round(sliderScore3, 3);
                     SafeSliderValue(3, ScoreLeft3);
                     break;
                 case 4:
-                    ScoreLeft4 = sliderScore4;
+                    ScoreLeft4 = Math.Round(sliderScore4, 3);
                     SafeSliderValue(4, ScoreLeft4);
                     break;
                 case 5:
-                    ScoreLeft5 = sliderScore5;
+                    ScoreLeft5 = Math.Round(sliderScore5, 3);
                     SafeSliderValue(5, ScoreLeft5);
                     break;
                 case 6:
-                    ScoreLeft6 = sliderScore6;
+                    ScoreLeft6 = Math.Round(sliderScore6, 3);
                     SafeSliderValue(6, ScoreLeft6);
                     break;
             }

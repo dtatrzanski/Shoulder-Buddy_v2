@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <!--Frames to create table border-->
-            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="Beige"  ></Frame>
+            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="#E1CAE9"  ></Frame>
             <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource TableBorder}" BackgroundColor="Beige"> </Frame>
             <Frame   Grid.Row="1"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" BackgroundColor="Beige"></Frame>
             <Frame   Grid.Row="2"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" ></Frame>

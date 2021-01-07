@@ -562,6 +562,8 @@ namespace DMapp.ViewModel
 
         private void SliderValueChanged(int sliderNumber, double value)
         {
+            value = Math.Round(value, 3);
+
             if(sliderNumber == 1)
             {
                 SafeSliderValue(1, value);

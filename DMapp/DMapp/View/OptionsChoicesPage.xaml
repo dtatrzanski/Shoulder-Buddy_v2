@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              x:Class="DMapp.View.OptionsChoicesPage">
     <ContentPage.Content>
         <Grid>
@@ -14,23 +15,23 @@
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -48,55 +49,76 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source= "DashboardStyles.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <gradient:SfGradientView Grid.RowSpan="20" Grid.ColumnSpan="5">
+                <gradient:SfGradientView.BackgroundBrush>
+                    <gradient:SfLinearGradientBrush >
+                        <gradient:SfLinearGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                            <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        </gradient:SfLinearGradientBrush.GradientStops>
+                    </gradient:SfLinearGradientBrush>
+                </gradient:SfGradientView.BackgroundBrush>
+            </gradient:SfGradientView>
+            
+            
+
             <!--Frames-->
-            <Frame IsVisible="{Binding IsVisibleFrame1}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0" />
+            <!--<Frame IsVisible="{Binding IsVisibleFrame1}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0" />
             <Frame IsVisible="{Binding IsVisibleFrame2}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="4" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>
             <Frame IsVisible="{Binding IsVisibleFrame3}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="7" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>
             <Frame IsVisible="{Binding IsVisibleFrame4}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="10" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>
             <Frame IsVisible="{Binding IsVisibleFrame5}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="13" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>
-            <Frame IsVisible="{Binding IsVisibleFrame6}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="16" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>
+            <Frame IsVisible="{Binding IsVisibleFrame6}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="16" Grid.RowSpan="3" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="0"/>-->
 
             <!--OptionName+ index-->
-            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding OptionName}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold"/>
-            <Label Grid.Column="4" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding IndexToDisplay}" TextColor="Black"/>
+            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding OptionName}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+            <Label Grid.Column="4" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding IndexToDisplay}" TextColor="White"/>
             <!--first choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft1}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Text="{Binding ScoreLeft1}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
-            <Slider IsVisible="{Binding IsVisibleSlider1}" Value="{Binding SliderScore1}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Label IsVisible="{Binding IsVisibleScoreLeft1}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Text="{Binding ScoreLeft1}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
+            <Slider IsVisible="{Binding IsVisibleSlider1}" Value="{Binding SliderScore1}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft1}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="3" Text="{Binding QualityNameLeft1 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft2}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
             <!--second choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft2}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4" Text="{Binding ScoreLeft2}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
+            <Label IsVisible="{Binding IsVisibleScoreLeft2}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4" Text="{Binding ScoreLeft2}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
 
-            <Slider IsVisible="{Binding IsVisibleSlider2}" Value="{Binding SliderScore2}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Slider IsVisible="{Binding IsVisibleSlider2}" Value="{Binding SliderScore2}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft2}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="6" Text="{Binding QualityNameLeft2 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft3}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="6" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
             <!--third choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft3}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" Text="{Binding ScoreLeft3}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
+            <Label IsVisible="{Binding IsVisibleScoreLeft3}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" Text="{Binding ScoreLeft3}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
 
-            <Slider IsVisible="{Binding IsVisibleSlider3}" Value="{Binding SliderScore3}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Slider IsVisible="{Binding IsVisibleSlider3}" Value="{Binding SliderScore3}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft3}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" Text="{Binding QualityNameLeft3 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft4}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="9" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
             <!--fourth choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft4}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="10" Text="{Binding ScoreLeft4}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
-
-            <Slider IsVisible="{Binding IsVisibleSlider4}" Value="{Binding SliderScore4}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Label IsVisible="{Binding IsVisibleScoreLeft4}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="10" Text="{Binding ScoreLeft4}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft2}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
+            <Slider IsVisible="{Binding IsVisibleSlider4}" Value="{Binding SliderScore4}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="11" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft4}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="12" Text="{Binding QualityNameLeft4 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft5}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="9" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
             <!--fifth choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft5}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="13" Text="{Binding ScoreLeft5}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
+            <Label IsVisible="{Binding IsVisibleScoreLeft5}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="13" Text="{Binding ScoreLeft5}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
 
-            <Slider IsVisible="{Binding IsVisibleSlider5}" Value="{Binding SliderScore5}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="14" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Slider IsVisible="{Binding IsVisibleSlider5}" Value="{Binding SliderScore5}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="14" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft5}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="15" Text="{Binding QualityNameLeft5 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+            <BoxView IsVisible="{Binding IsVisibleQualityNameLeft6}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="9" BackgroundColor="#E6E3E7" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1"/>
             <!--sixth choice-->
-            <Label IsVisible="{Binding IsVisibleScoreLeft6}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="16" Text="{Binding ScoreLeft6}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
+            <Label IsVisible="{Binding IsVisibleScoreLeft6}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="16" Text="{Binding ScoreLeft6}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" TextColor="White"/>
 
-            <Slider IsVisible="{Binding IsVisibleSlider6}" Value="{Binding SliderScore6}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="17" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightGreen" MaximumTrackColor="red"  ThumbColor="Black"  />
+            <Slider IsVisible="{Binding IsVisibleSlider6}" Value="{Binding SliderScore6}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="17" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="410" BackgroundColor="Black" HeightRequest="50"  MinimumTrackColor="LightPink" MaximumTrackColor="White"  ThumbColor="Black"  />
             <Label IsVisible="{Binding IsVisibleQualityNameLeft6}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="18" Text="{Binding QualityNameLeft6 }" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-            
+           
             <!--continue button-->
-            <Button Command="{Binding BackButtonClickedCommand}" Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2"  Style="{StaticResource ContinueButtonStyle}" Text="Back" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" TranslationX="-30"  FontSize="13" BackgroundColor="LightSeaGreen" />
-            <Button Command="{Binding ContinueButtonClickedCommand}" IsEnabled="{Binding IsContinueButtonEnabled}" Grid.Column="2" Grid.Row="19" Grid.ColumnSpan="3"  Style="{StaticResource ContinueButtonStyle}" Text="Continue" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" TranslationX="-15"  FontSize="13" BackgroundColor="LightSkyBlue"/>
+            <ImageButton Source="left_arrow" Command="{Binding BackButtonClickedCommand}" Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2"    VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" TranslationX="-30"   BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" />
+            <ImageButton Source="right_arrow" Command="{Binding ContinueButtonClickedCommand}" Grid.Column="2" Grid.Row="19" Grid.ColumnSpan="3"   VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" TranslationX="-15" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" />
 
 
         </Grid>

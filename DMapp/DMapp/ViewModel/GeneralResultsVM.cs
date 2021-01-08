@@ -113,6 +113,7 @@ namespace DMapp.ViewModel
                 if(optionsScore[i] > temp) { temp = optionsScore[i]; greatestScoreIndex = i; }
             }
             Option bestOptionClass = options[greatestScoreIndex];
+            BestOptionName = bestOptionClass.Name;
             List<Weight> bestOptionsWeights = new List<Weight>();
             if (Mode == 1)
             {
@@ -138,9 +139,13 @@ namespace DMapp.ViewModel
 
             foreach(var weight in bestOptionsWeights)
             {
+                string qualityNameShorten = qualityNames[counter];
+                int maxLenght = 6;
+                if( maxLenght <= qualityNameShorten.Length) { qualityNameShorten = qualityNameShorten.Substring(0, 5) + "."; }
+                else { qualityNameShorten = qualityNameShorten.Substring(0, qualityNameShorten.Length); }
                 WeightQualityChartModel model = new WeightQualityChartModel
                 {
-                    QualityName = qualityNames[counter],
+                    QualityName = qualityNameShorten,
                     WeightAmount = bestOptionsWeights[counter].Amount * 100
                 };
                 tempChartData.Add(model);
@@ -187,7 +192,17 @@ namespace DMapp.ViewModel
             }
         }
 
-           
+        private string bestOptionName;
+
+        public string BestOptionName
+        {
+            get { return bestOptionName; }
+            set { bestOptionName = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
     }
 }

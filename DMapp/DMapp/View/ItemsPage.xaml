@@ -86,7 +86,7 @@
                             <ViewCell  >
                                 
                                 <ViewCell.ContextActions>
-                                    <MenuItem Text="Details"
+                                    <MenuItem Text="INFO"
                                               Command="{Binding Path=BindingContext.DetailsCommand, Source={x:Reference Name=ItPage}}"
                                               CommandParameter="{Binding}"/>
 

@@ -15,10 +15,10 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.3*"/>
 
             </Grid.RowDefinitions>
             
@@ -42,21 +42,53 @@
                 </gradient:SfGradientView.BackgroundBrush>
             </gradient:SfGradientView>
 
-            <chart:SfChart Grid.Row="1">
+            <chart:SfChart Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="Center" >
 
                 <chart:SfChart.PrimaryAxis>
-                    <chart:CategoryAxis/>
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.AxisLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White" />
+                        </chart:CategoryAxis.AxisLineStyle>
+
+
+
+                        <!--To change axis label text color-->
+                        <chart:CategoryAxis.LabelStyle>
+                            <chart:ChartAxisLabelStyle FontAttributes="Bold" TextColor="White" FontSize="13" Margin="15,15,15,15"/>
+                        </chart:CategoryAxis.LabelStyle>
+                        <!--To change axis ticks color-->
+                        <chart:CategoryAxis.MajorTickStyle>
+                            <chart:ChartAxisTickStyle StrokeColor="White"/>
+                        </chart:CategoryAxis.MajorTickStyle>
+
+                        <chart:CategoryAxis.MajorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:CategoryAxis.MajorGridLineStyle>
+                    </chart:CategoryAxis>
                 </chart:SfChart.PrimaryAxis>
 
                 <chart:SfChart.SecondaryAxis>
-                    <chart:NumericalAxis/>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.MajorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:NumericalAxis.MajorGridLineStyle>
+
+                        <chart:NumericalAxis.MinorGridLineStyle>
+                            <chart:ChartLineStyle StrokeColor="White"/>
+                        </chart:NumericalAxis.MinorGridLineStyle>
+
+                        <chart:NumericalAxis.LabelStyle>
+                            <chart:ChartAxisLabelStyle TextColor="White" FontSize="10" FontAttributes="Bold" />
+                        </chart:NumericalAxis.LabelStyle>
+
+                    </chart:NumericalAxis>
                 </chart:SfChart.SecondaryAxis>
 
-                <chart:PolarSeries ItemsSource="{Binding ChartData}" XBindingPath="QualityName" YBindingPath="WeightAmount" />
+                <chart:PolarSeries ItemsSource="{Binding ChartData}" XBindingPath="QualityName" YBindingPath="WeightAmount" DrawType="Area"  Color="Pink" Opacity="0.3" />
 
             </chart:SfChart>
 
-
+            <Label Text="{Binding BestOptionName}" TextColor="White" FontSize="23" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="CenterAndExpand" />
             <Button Grid.Row="2" Text="End" CornerRadius="30" BackgroundColor="Transparent" Command="{Binding EndCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" HeightRequest="40" BorderColor="White" BorderWidth="3" TextColor="White" />
             <Button Grid.Row="3" CornerRadius="30" Text="Details" BackgroundColor="Transparent" Command="{Binding DetailsCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" HeightRequest="40" BorderColor="White" BorderWidth="3" TextColor="White" />
 

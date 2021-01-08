@@ -8,7 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using DMapp.View;
-using Lottie.Forms.Droid;
+
 
 namespace DMapp.Droid
 {
@@ -30,10 +30,10 @@ namespace DMapp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            AnimationViewRenderer.Init();
+            
 
 
-            string dbName = "SQLiteDb.sqlite"; //name of the file
+            string dbName = "SQLiteDb2.sqlite"; //name of the file
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); //folder where the file will be created
             string fullPath = System.IO.Path.Combine(folderPath, dbName);
 

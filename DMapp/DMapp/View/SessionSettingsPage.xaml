@@ -90,7 +90,7 @@
                     
                 </chart:SfChart.SecondaryAxis>
 
-                <chart:ColumnSeries ItemsSource="{Binding ChartData}" XBindingPath="ColumnName" YBindingPath="Value" EnableAnimation="True">
+                <chart:ColumnSeries ItemsSource="{Binding ChartData}" XBindingPath="ColumnName" YBindingPath="Value" EnableAnimation="True" Spacing="0.3">
 
                     <chart:ColumnSeries.ColorModel>
                         <chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource Colors}"/>

@@ -58,11 +58,11 @@
             <Entry  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding Goal}" FontSize="35" Placeholder="Goal/Assumption"   HorizontalTextAlignment="Center" MaxLength="38" TextColor="White"/>
 
             <Picker Grid.Column="1" Grid.Row="3" SelectedItem="{Binding ChoosenCategoryName, Mode=TwoWay}" ItemsSource="{Binding SessionCategoriesList}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"   FontSize="18" HorizontalTextAlignment="Center" TextColor="White"  />
-            <Button  Grid.Column="1" Grid.Row="3" Command="{Binding PlusButtonClickedCommand}" FontSize="19" HeightRequest="41" CornerRadius="0"  VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="+" Style="{StaticResource PlusButtonStyle}" BackgroundColor="Transparent" TranslationY="7" />
+            <Button  Grid.Column="1" Grid.Row="3" Command="{Binding PlusButtonClickedCommand}" FontSize="19" HeightRequest="47" CornerRadius="0"  VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="+" Style="{StaticResource PlusButtonStyle}" BackgroundColor="Transparent" TranslationY="7" />
                     
                     <Entry Grid.Row="3" IsVisible="{Binding IsCategoryEntryVisible}" Grid.Column="2" Placeholder="category's name"  Text="{Binding NewCategoryName}"   HorizontalTextAlignment="Center"  FontSize="18"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" TextColor="White"/>
                     <!--<Button Command="{Binding ContinueButtonClickedCommand}" IsVisible="{Binding IsContinueButtonVisible}" Grid.Column="1" Text="Continue" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource ContinueButtonStyle}"   Grid.RowSpan="2" />-->
-                    <Button Command="{Binding CancelButtonClickedCommand}" IsVisible="{Binding IsCancelButtonVisible}" Grid.Row="3" Grid.Column="2" Text="Cancel" VerticalOptions="End" HorizontalOptions="Center"   CornerRadius="0" HeightRequest="33" WidthRequest="75" FontSize="13" BackgroundColor="Transparent" TextColor="White" />
+                    <Button Command="{Binding CancelButtonClickedCommand}" IsVisible="{Binding IsCancelButtonVisible}" Grid.Row="3" Grid.Column="2" Text="Cancel" VerticalOptions="End" HorizontalOptions="Center"   CornerRadius="0" HeightRequest="35" WidthRequest="75" FontSize="13" BackgroundColor="Transparent" TextColor="White" />
 
             <Image Grid.Row="5" Grid.ColumnSpan="4" Source="startup.png"
        WidthRequest="{OnPlatform iOS=300, Android=250}"

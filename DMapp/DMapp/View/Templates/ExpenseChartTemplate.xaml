@@ -91,6 +91,7 @@
                                    HorizontalTextAlignment="Center"
                                    Text="{StaticResource DropDownButtonIcon}"
                                    TextColor="{DynamicResource Gray-White}"
+                                   
                                    VerticalTextAlignment="Center" />
                         </combobox:DropDownButtonSettings.View>
                     </combobox:DropDownButtonSettings>

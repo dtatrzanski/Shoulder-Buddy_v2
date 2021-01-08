@@ -47,7 +47,11 @@ namespace DMapp.ViewModel
                 string sessionCategoryName = sessionCategory.CategoryName;
                 TemporaryDb.SessionCategoryName = sessionCategoryName;
             }
-            TemporaryDb.PrepareDataBeforeInsertion();
+            else
+            {
+                TemporaryDb.PrepareDataBeforeInsertion();
+            }
+           
                 UpdateGraph();
             
             

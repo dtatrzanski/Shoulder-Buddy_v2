@@ -84,7 +84,7 @@
                     </chart:NumericalAxis>
                 </chart:SfChart.SecondaryAxis>
 
-                <chart:PolarSeries ItemsSource="{Binding ChartData}" XBindingPath="QualityName" YBindingPath="WeightAmount" DrawType="Area"  Color="Pink" Opacity="0.3" />
+                <chart:PolarSeries ItemsSource="{Binding ChartData}" XBindingPath="QualityName" YBindingPath="WeightAmount" DrawType="Area"  Color="Pink" Opacity="0.3" EnableAnimation="True" /> 
 
             </chart:SfChart>
 

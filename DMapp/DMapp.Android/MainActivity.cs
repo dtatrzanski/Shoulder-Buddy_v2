@@ -33,7 +33,7 @@ namespace DMapp.Droid
             AnimationViewRenderer.Init();
 
 
-            string dbName = "jnhz.sqlite"; //name of the file
+            string dbName = "SQLiteDb.sqlite"; //name of the file
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); //folder where the file will be created
             string fullPath = System.IO.Path.Combine(folderPath, dbName);
 

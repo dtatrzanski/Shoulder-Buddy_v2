@@ -96,7 +96,7 @@ namespace DMapp.Services
         
         //first version of method, used by 
 
-        public static double[] CalculateQualitiesScores(List<string> sequence, double [] leftSideValues, int numOfQualities) {
+        public static double[] CalculateQualitiesScores(List<string> sequence, double [] rightSideValues, int numOfQualities) {
 
             double[] qualitiesScores = new double[numOfQualities];
             int counter = 0;
@@ -107,8 +107,8 @@ namespace DMapp.Services
                 int rightQualityIndex;
                 Int32.TryParse(elements[0], out leftQualityIndex);
                 Int32.TryParse(elements[1], out rightQualityIndex);
-                qualitiesScores[leftQualityIndex] += leftSideValues[counter];
-                qualitiesScores[rightQualityIndex] += 1 - leftSideValues[counter] ; 
+                qualitiesScores[leftQualityIndex] += 1- rightSideValues[counter];
+                qualitiesScores[rightQualityIndex] +=  rightSideValues[counter] ; 
                 counter++;
             }
             return qualitiesScores;

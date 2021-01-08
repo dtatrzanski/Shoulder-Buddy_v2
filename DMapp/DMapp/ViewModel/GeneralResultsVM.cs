@@ -1,18 +1,24 @@
-﻿using DMapp.Services;
+﻿using DMapp.Models;
+using DMapp.Services;
 using DMapp.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace DMapp.ViewModel
 {
-    class GeneralResultsVM
+    class GeneralResultsVM: BaseViewModel
     {
         public Command EndCommand { get; set; }
         public Command DetailsCommand { get; set; }
         public Command BackCommand { get; set; }
+
+        private ObservableCollection<WeightQualityChartModel> chartData { get; set; }  
+
         private int Mode; //mode 0 means, it will read data from temporary db. Mode 1 means it will read from sqlite db (we will use it when we open previously created decisionn session from the list)
         private int SessionID;
         INavigation navigation;
@@ -33,11 +39,120 @@ namespace DMapp.ViewModel
 
         public void PageDisplayed()
         {
+            if(Mode == 1)
+            {
+                DecisionSession session = ManagerSQL.ReadDecisionSessions().Where(x => x.SessionID == SessionID).FirstOrDefault();
+                int categoryID = session.SessionCategoryID;
+                SessionCategory sessionCategory = ManagerSQL.ReadSessionCategories().Where(x => x.SessionCategoryID == categoryID).FirstOrDefault();
+                string sessionCategoryName = sessionCategory.CategoryName;
+                TemporaryDb.SessionCategoryName = sessionCategoryName;
+            }
+            TemporaryDb.PrepareDataBeforeInsertion();
+                UpdateGraph();
+            
+            
+        }
+
+        private void UpdateGraph()
+        {
+            List<string> qualityNames = new List<string>();
+            List<double> weights = new List<double>();
+            List<Weight> weightsClasses = new List<Weight>();
+            List<Option> options = new List<Option>();
+            List<double> qualitiesImportance = new List<double>();
+           
+            
             if(Mode == 0)
             {
-                //Obsolete
+                qualityNames = TemporaryDb.qualityNames;
+                weights = TemporaryDb.weights;
+                options = TemporaryDb.Options;
+                qualitiesImportance = TemporaryDb.qualitiesImportance;
+                weightsClasses = TemporaryDb.WeightClasses;
+                
             }
+
+            if(Mode == 1)
+            {
+                var allsession = ManagerSQL.ReadDecisionSessions();
+                var allOptions = ManagerSQL.ReadOptions();
+                qualityNames = ManagerSQL.ReadQualities().Where(x => x.SessionID == SessionID).Select(x => x.Name).ToList();
+                options = ManagerSQL.ReadOptions().Where(x => x.SessionID == SessionID).ToList();
+                qualitiesImportance = ManagerSQL.ReadQualities().Where(x => x.SessionID == SessionID).Select(x => x.Importance).ToList();
+                weights = ManagerSQL.ReadWeights().Where(x => x.SessionID == SessionID).Select(x => x.Amount).ToList();
+                weightsClasses = ManagerSQL.ReadWeights().Where(x => x.SessionID == SessionID).ToList();
+            }
+
+
+
+
             
+            List<List<double>> weightsToPass = new List<List<double>>();
+            int cycleCounter = 1;
+            int numOfQualities = qualitiesImportance.Count;
+            foreach (var option in options)
+            {
+                List<double> weightsForOneOption = new List<double>();
+                for (int i = (cycleCounter - 1) * numOfQualities; i < numOfQualities * cycleCounter; i++)
+                {
+                    weightsForOneOption.Add(weights[i]);
+
+                }
+                cycleCounter++;
+                weightsToPass.Add(weightsForOneOption);
+
+
+            }
+
+            var optionsScore = DecisionSystem.ReturnResult(qualitiesImportance, weightsToPass).ToList();
+
+            double temp = 0;
+            int greatestScoreIndex = 0;
+            for(int i = 0; i < optionsScore.Count; i++)
+            {
+                if(optionsScore[i] > temp) { temp = optionsScore[i]; greatestScoreIndex = i; }
+            }
+            Option bestOptionClass = options[greatestScoreIndex];
+            List<Weight> bestOptionsWeights = new List<Weight>();
+            if (Mode == 1)
+            {
+                bestOptionsWeights = weightsClasses.Where(x => x.OptionID == bestOptionClass.OptionID).ToList();
+            }
+            else
+            {
+                int starter = greatestScoreIndex * (qualityNames.Count);
+                int finisher = (greatestScoreIndex + 1 ) * (qualityNames.Count);
+                for (int i = starter; i < finisher; i++)
+                {
+                    bestOptionsWeights.Add(weightsClasses[i]);
+                }
+
+            }
+
+            
+             
+
+            int counter = 0;
+
+            ObservableCollection<WeightQualityChartModel> tempChartData = new ObservableCollection<WeightQualityChartModel>();
+
+            foreach(var weight in bestOptionsWeights)
+            {
+                WeightQualityChartModel model = new WeightQualityChartModel
+                {
+                    QualityName = qualityNames[counter],
+                    WeightAmount = bestOptionsWeights[counter].Amount * 100
+                };
+                tempChartData.Add(model);
+                counter++;
+            }
+
+            ChartData = tempChartData;
+
+
+           
+           
+
         }
 
         private async Task ExecuteDetailsCommand()
@@ -59,5 +174,20 @@ namespace DMapp.ViewModel
             }
             await navigation.PopToRootAsync();
         }
+
+        
+
+        public ObservableCollection<WeightQualityChartModel> ChartData
+        {
+            get { return chartData; }
+            set
+            {
+                chartData = value;
+                OnPropertyChanged();
+            }
+        }
+
+           
+
     }
 }

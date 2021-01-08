@@ -146,13 +146,21 @@ namespace DMapp.Services
         {
             // reverse to store left value - detail use it
 
-            var reversedOrder = qualitiesImportance;
+            var reversedOrder = new List<double>(qualitiesImportance);
             for (int i = 0; i < reversedOrder.Count; i++)
             {
-                reversedOrder[i] = 1 - reversedOrder[i];
+                if(reversedOrder[i] - 1 < 0)
+                {
+                    reversedOrder[i] = (reversedOrder[i] - 1)*(-1);
+                }
+                else
+                {
+                    reversedOrder[i] = (reversedOrder[i] - 1);
+                }
+                
             }
 
-            qualitiesImportance = reversedOrder;
+            
             // for now we do not need qualities ID
             int importanceIndex = 0;
             foreach(string name in qualityNames)
@@ -160,7 +168,7 @@ namespace DMapp.Services
                 Quality quality = new Quality();
                 quality.Name = name;
                 quality.SessionID = SessionID;
-                quality.Importance = qualitiesImportance[importanceIndex];
+                quality.Importance = reversedOrder[importanceIndex];
                 importanceIndex++;
                 Qualities.Add(quality);
             }

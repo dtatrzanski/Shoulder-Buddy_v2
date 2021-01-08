@@ -1,15 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="DMapp.View.GeneralResultsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.GestureRecognizers>
+
+        <Grid>
+
+            <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Right" Command="{Binding BackCommand}"/>
                 <SwipeGestureRecognizer Direction="Left" Command="{Binding DetailsCommand}"/>
-            </StackLayout.GestureRecognizers>
-            <Button Text="End" Command="{Binding EndCommand}" WidthRequest="100" HeightRequest="100" />
-            <Button Text="Details" Command="{Binding DetailsCommand}" WidthRequest="100" HeightRequest="100" />
-        </StackLayout>
+            </Grid.GestureRecognizers>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            
+            
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source= "DashboardStyles.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <gradient:SfGradientView Grid.RowSpan="5" >
+                <gradient:SfGradientView.BackgroundBrush>
+                    <gradient:SfLinearGradientBrush >
+                        <gradient:SfLinearGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                            <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        </gradient:SfLinearGradientBrush.GradientStops>
+                    </gradient:SfLinearGradientBrush>
+                </gradient:SfGradientView.BackgroundBrush>
+            </gradient:SfGradientView>
+
+            <chart:SfChart Grid.Row="1">
+
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis/>
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis/>
+                </chart:SfChart.SecondaryAxis>
+
+                <chart:PolarSeries ItemsSource="{Binding ChartData}" XBindingPath="QualityName" YBindingPath="WeightAmount" />
+
+            </chart:SfChart>
+
+
+            <Button Grid.Row="2" Text="End" CornerRadius="30" BackgroundColor="Transparent" Command="{Binding EndCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" HeightRequest="40" BorderColor="White" BorderWidth="3" TextColor="White" />
+            <Button Grid.Row="3" CornerRadius="30" Text="Details" BackgroundColor="Transparent" Command="{Binding DetailsCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" HeightRequest="40" BorderColor="White" BorderWidth="3" TextColor="White" />
+
+            
+            
+           
+
+        </Grid>
+            
+            
+        
     </ContentPage.Content>
 </ContentPage>

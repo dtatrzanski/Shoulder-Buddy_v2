@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              x:Class="DMapp.View.DetailedResultsPage"
              >
 
@@ -20,6 +21,7 @@
                 <RowDefinition Height="{Binding OptionsRowHeight}" />
                 <RowDefinition x:Name="ListRow"/>
                 <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -29,29 +31,48 @@
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
+            
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source= "DashboardStyles.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+            
+            <gradient:SfGradientView Grid.RowSpan="6" Grid.ColumnSpan="5">
+                <gradient:SfGradientView.BackgroundBrush>
+                    <gradient:SfLinearGradientBrush >
+                        <gradient:SfLinearGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                            <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        </gradient:SfLinearGradientBrush.GradientStops>
+                    </gradient:SfLinearGradientBrush>
+                </gradient:SfGradientView.BackgroundBrush>
+            </gradient:SfGradientView>
 
             <!--Frames to create table border-->
-            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="#E1CAE9"  ></Frame>
-            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource TableBorder}" BackgroundColor="Beige"> </Frame>
-            <Frame   Grid.Row="1"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" BackgroundColor="Beige"></Frame>
-            <Frame   Grid.Row="2"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" ></Frame>
-            <Frame   Grid.Row="3" Grid.Column="0" Style="{StaticResource TableBorder}" ></Frame>
-            <Frame   Grid.Row="3" Grid.Column="1" Style="{StaticResource TableBorder}" ></Frame>
-            <Frame   Grid.Row="3" Grid.Column="2" Style="{StaticResource TableBorder}"></Frame>
-            <Frame   Grid.Row="3" Grid.Column="3" Style="{StaticResource TableBorder}" IsVisible="{Binding Column3FrameVisibility}" ></Frame>
-            <Frame   Grid.Row="3" Grid.Column="4" Style="{StaticResource TableBorder}" IsVisible="{Binding Column4FrameVisibility}"></Frame>
-            
-            <Frame   Grid.Row="4" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="Transparent"></Frame>
-            <Frame   Grid.Row="4" Grid.Column="1" Style="{StaticResource TableBorder}" BackgroundColor="Beige"></Frame>
-            <Frame   Grid.Row="4" Grid.Column="2" Style="{StaticResource TableBorder}" BackgroundColor="Beige"></Frame>
-            <Frame   Grid.Row="4" Grid.Column="3" Style="{StaticResource TableBorder}" BackgroundColor="{Binding Column3LastRowColor}" IsVisible="{Binding Column3FrameVisibility}"></Frame>
-            <Frame   Grid.Row="4" Grid.Column="4" Style="{StaticResource TableBorder}" BackgroundColor="{Binding Column4LastRowColor}" IsVisible="{Binding Column4FrameVisibility}"></Frame>
+            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="Transparent" BorderColor="White"  ></Frame>
+            <Frame   Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource TableBorder}" BackgroundColor="Transparent" BorderColor="White" > </Frame>
+            <Frame   Grid.Row="1"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" BackgroundColor="Transparent" BorderColor="White"   ></Frame>
+            <Frame   Grid.Row="2"  Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource TableBorder}" BorderColor="White" ></Frame>
+            <Frame   Grid.Row="3" Grid.Column="0" Style="{StaticResource TableBorder}" BorderColor="White" ></Frame>
+            <Frame   Grid.Row="3" Grid.Column="1" Style="{StaticResource TableBorder}" BorderColor="White" ></Frame>
+            <Frame   Grid.Row="3" Grid.Column="2" Style="{StaticResource TableBorder}" BorderColor="White" ></Frame>
+            <Frame   Grid.Row="3" Grid.Column="3" Style="{StaticResource TableBorder}" BorderColor="White" IsVisible="{Binding Column3FrameVisibility}" ></Frame>
+            <Frame   Grid.Row="3" Grid.Column="4" Style="{StaticResource TableBorder}" BorderColor="White" IsVisible="{Binding Column4FrameVisibility}"></Frame>
+
+            <Frame   Grid.Row="4" Grid.Column="0" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame   Grid.Row="4" Grid.Column="1" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame   Grid.Row="4" Grid.Column="2" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame   Grid.Row="4" Grid.Column="3" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent" IsVisible="{Binding Column3FrameVisibility}"></Frame>
+            <Frame   Grid.Row="4" Grid.Column="4" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent" IsVisible="{Binding Column4FrameVisibility}"></Frame>
             <!--Wider lines below-->
-            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="0" Style="{StaticResource TableBorder}" BackgroundColor="Transparent"></Frame>
-            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="1" Style="{StaticResource TableBorder}" BackgroundColor="Transparent"></Frame>
-            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="2" Style="{StaticResource TableBorder}" BackgroundColor="Transparent"></Frame>
-            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="3" Style="{StaticResource TableBorder}" BackgroundColor="Transparent" IsVisible="{Binding Column3FrameVisibility}"></Frame>
-            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="4" Style="{StaticResource TableBorder}" BackgroundColor="Transparent" IsVisible="{Binding Column4FrameVisibility}"></Frame>
+            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="0" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="1" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="2" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent"></Frame>
+            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="3" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent" IsVisible="{Binding Column3FrameVisibility}"></Frame>
+            <Frame  TranslationY="-1" Grid.Row="4" Grid.Column="4" Style="{StaticResource TableBorder}" BorderColor="White" BackgroundColor="Transparent" IsVisible="{Binding Column4FrameVisibility}"></Frame>
 
             <!--Colorful boxes to visualize columns and rows (for debuging purposes)-->
             
@@ -74,25 +95,25 @@
 
             <Slider Minimum="{Binding SliderMin}" Maximum="{Binding SliderMax}" Value="{Binding SliderValue}"
                     Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Opacity="0.8"
-                    MinimumTrackColor="Green" MaximumTrackColor="Cyan"  BackgroundColor="Black" 
+                    MinimumTrackColor="#FF61F8" MaximumTrackColor="#FF61F8"  BackgroundColor="Transparent" 
                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="430" HeightRequest="25"
-                     ThumbColor="HotPink"  >
+                     ThumbColor="HotPink"   >
             </Slider>
 
-            <Button Command="{Binding LeftButtonClickedCommand}"   Grid.Row="0" Grid.Column="2"
-                    VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="32" HeightRequest="30"
-                      FontAttributes="Bold" CornerRadius="0"  BorderColor="Black" BorderWidth="2" />
+            <!--<Button Command="{Binding LeftButtonClickedCommand}"   Grid.Row="0" Grid.Column="2"
+                    VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="20" HeightRequest="20"
+                      FontAttributes="Bold" CornerRadius="0"  BorderColor="Transparent" BorderWidth="1" />
             <Button Command="{Binding RightButtonClickedCommand}"   Grid.Row="0" Grid.Column="4"
                     VerticalOptions="Center" HorizontalOptions="End" WidthRequest="32" HeightRequest="30"
-                       FontAttributes="Bold" CornerRadius="0" BorderColor="Black" BorderWidth="2" TranslationX="-1"  />
+                       FontAttributes="Bold" CornerRadius="0" BorderColor="Black" BorderWidth="2" TranslationX="-1"  />-->
             
             <!--Row 1 and 2-->
 
-            <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Text="Qualities"  Style="{StaticResource MainColumnLabelStyle}" FontSize="15" TranslationY="13"/>
-            <Label FontSize="13" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Text="Qualities' importance" Style="{StaticResource MainColumnLabelStyle}"  TranslationX="13" TranslationY="13" />
-            <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="Options' weights" Style="{StaticResource MainColumnLabelStyle}" />
+            <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Text="Qualities"  Style="{StaticResource MainColumnLabelStyle}" FontSize="15" TranslationY="13" TextColor="White" />
+            <Label FontSize="13" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Text="Qualities' importance" Style="{StaticResource MainColumnLabelStyle}"  TranslationX="13" TranslationY="13" TextColor="White" />
+            <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="Options' weights" Style="{StaticResource MainColumnLabelStyle}" TextColor="White"/>
 
-            <Label Grid.Row="1" Grid.Column="4" Text="{Binding Index}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" TextColor="Black" TranslationX="-18"/>
+            <Label Grid.Row="1" Grid.Column="4" Text="{Binding Index}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" TextColor="White" TranslationX="-18" />
 
             <Label Padding="4,0,2.5,2" Grid.Row="2" Grid.Column="2"  Text="{Binding Option1ToDisplay}" Style="{StaticResource OptionsNameLabelStyle}"/>
             <Label Padding="4,0,2.5,2" Grid.Row="2" Grid.Column="3"  Text="{Binding Option2ToDisplay}" Style="{StaticResource OptionsNameLabelStyle}" />
@@ -100,7 +121,7 @@
 
             
             <!--Row 3-->
-            <ListView  Grid.Row="3" Grid.Column="0"  ItemsSource="{Binding QualitiesNames}" Style="{StaticResource ListViewStyle}" >
+            <ListView  Grid.Row="3" Grid.Column="0"  ItemsSource="{Binding QualitiesNames}" Style="{StaticResource ListViewStyle}" SeparatorColor="White" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -111,7 +132,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding QualitiesImportance}" Style="{StaticResource ListViewStyle}" >
+            <ListView  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding QualitiesImportance}" Style="{StaticResource ListViewStyle}" SeparatorColor="White" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -122,7 +143,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView Grid.Row="3" Grid.Column="2" ItemsSource="{Binding WeightsToDisplayColumn1}" Style="{StaticResource ListViewStyle}" >
+            <ListView Grid.Row="3" Grid.Column="2" ItemsSource="{Binding WeightsToDisplayColumn1}" Style="{StaticResource ListViewStyle}" SeparatorColor="White" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -133,7 +154,7 @@
                     
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView  Grid.Row="3" Grid.Column="3" ItemsSource="{Binding WeightsToDisplayColumn2}" Style="{StaticResource ListViewStyle}">
+            <ListView  Grid.Row="3" Grid.Column="3" ItemsSource="{Binding WeightsToDisplayColumn2}" Style="{StaticResource ListViewStyle}" SeparatorColor="White"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -144,7 +165,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView  Grid.Row="3" Grid.Column="4" ItemsSource="{Binding WeightsToDisplayColumn3}" Style="{StaticResource ListViewStyle}">
+            <ListView  Grid.Row="3" Grid.Column="4" ItemsSource="{Binding WeightsToDisplayColumn3}" Style="{StaticResource ListViewStyle}"  SeparatorColor="White"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
